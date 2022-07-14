@@ -18,5 +18,11 @@
             </div>
         </div>
     </header>
+    {% for gloses in dict %}
+        <div class="glose">
+            <h1 class="gloseTitle">{{ gloses.0 }}</h1>
+            <p class="gloseText">{{ gloses.2 }}</p>
+        </div>
+    {% endfor %}
 </body>
 </html>
