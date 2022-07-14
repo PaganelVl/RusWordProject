@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css">
-    <title>Слово арбуз в словарях</title>
+    <title>Слово {{ word }} в словарях</title>
 </head>
 <body>
     <header>
         <img src="{% static 'logo.png' %}" id="logoResult">
         <div class="mainForm" id="searchForm">
-            <form>
-                <input value="Арбуз" class="searchInputMain" id="searchInput" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-autocomplete="list" aria-label="Запрос" id="text" maxlength="400" name="text" autofocus="" placeholder="Например: арбуз" role="combobox" aria-controls="suggest-list-b95dusbyd7w">
+            <form action="result">
+                <input value="{{ word.capitalize }}" class="searchInputMain" id="searchInput" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-autocomplete="list" aria-label="Запрос" id="text" maxlength="400" name="text" autofocus="" placeholder="Например: арбуз" role="combobox" aria-controls="suggest-list-b95dusbyd7w">
                 <button class="searchButton" id="searchBtn" type="submit">
                     Искать в словарях
                 </button>
@@ -21,7 +21,8 @@
     </header>
     {% for gloses in dict %}
         <div class="glose">
-            <h1 class="gloseTitle">{{ gloses.0 }}</h1>
+            <small class="gloseDict"><a href="https://ru.wikipedia.org/wiki/{% if gloses.0 == 'Словарь Ефремовой' %}Ефремова,_Татьяна_Фёдоровна{% else %}{{ gloses.0 }}{% endif %}">{{ gloses.0 }}</a></small>
+            <h1 class="gloseTitle"> {{ word.capitalize }}</h1>
             <p class="gloseText">{{ gloses.2 }}</p>
         </div>
     {% endfor %}

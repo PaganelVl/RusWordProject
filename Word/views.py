@@ -64,11 +64,11 @@ class Parse:
         return res
 
 
-def index1(request):
+def index(request):
     return render(request, 'index.html')
 
 
-def index(request):
+def result(request):
     word = 'арбуз'
     dictionaries = [
         ['Толковый словарь Даля', 'https://diclist.ru/slovar/dalya'],
@@ -81,6 +81,6 @@ def index(request):
     for i in dictionaries:
         i.append(Parse.parse(word, i[1]))
 
-    data = {'dict': dictionaries}
+    data = {'dict': dictionaries, 'word': word}
 
     return TemplateResponse(request, 'result.html', data)
