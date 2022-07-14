@@ -7,6 +7,7 @@ from transliterate import translit
 
 class Parse:
     def wordManage(FirstLetter):
+        """Trasliterating word and designation it first letter"""
         FirstLetter = f"{FirstLetter}"
         word = translit(word, 'ru', reversed=True)
         for i in word:
@@ -14,11 +15,11 @@ class Parse:
                 word = word.replace(i, "")
 
     def parse(word, url):
-        # Замена ё на е
+        # Replacement "е" to "ё"
         for i in word:
             if i == "ё":
                 word = word.replace(i, "е")
-        # Траслитерация слова и обозначения его первой буквы на латинице
+        # Trasliterating word and designation it first letter
         match word[0]:
             case "е":
                 Parse.wordManage('ye')
