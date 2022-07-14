@@ -1,13 +1,14 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css">
     <title>Слово арбуз в словарях</title>
 </head>
 <body>
     <header>
-        <img src="logo.png" id="logoResult">
+        <img src="{% static 'logo.png' %}" id="logoResult">
         <div class="mainForm" id="searchForm">
             <form>
                 <input value="Арбуз" class="searchInputMain" id="searchInput" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-autocomplete="list" aria-label="Запрос" id="text" maxlength="400" name="text" autofocus="" placeholder="Например: арбуз" role="combobox" aria-controls="suggest-list-b95dusbyd7w">
