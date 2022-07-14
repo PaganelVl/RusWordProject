@@ -64,7 +64,7 @@ class Parse:
         return res
 
 
-def index1(requeat):
+def index1(request):
     return render(request, 'index.html')
 
 
