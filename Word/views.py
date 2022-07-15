@@ -1,8 +1,14 @@
+import string
 from django.shortcuts import render
 from django.template.response import TemplateResponse
 import requests
 from bs4 import BeautifulSoup
 from transliterate import translit
+from django import forms
+
+
+class Form(forms.Form):
+    word = forms.CharField(label='')
 
 
 class Parse:
@@ -65,11 +71,17 @@ class Parse:
 
 
 def index(request):
-    return render(request, 'index.html')
+    userform = Form()
+    data = {"form": userform}
+
+    return render(request, "index.html", data)
 
 
 def result(request):
-    word = 'арбуз'
+    if request.method == "POST":
+        word = request.POST.get("word")
+        word = str(word)
+
     dictionaries = [
         ['Толковый словарь Даля', 'https://diclist.ru/slovar/dalya'],
         ['Толковый словарь Ожегова', 'https://diclist.ru/slovar/ozhegova'],
@@ -79,8 +91,9 @@ def result(request):
     ]
 
     for i in dictionaries:
-        i.append(Parse.parse(word, i[1]))
+        i.append(Parse.parse(word.lower(), i[1]))
 
-    data = {'dict': dictionaries, 'word': word}
+    userform = Form()
+    data = {'dict': dictionaries, 'word': word, "form": userform}
 
     return TemplateResponse(request, 'result.html', data)
