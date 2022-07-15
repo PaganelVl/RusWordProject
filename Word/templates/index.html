@@ -11,19 +11,16 @@
         <img src="{% static 'logo.png' %}" id="logoMain">
     </header>
     <center>
-    <div id="main">
-        <h1 class="titleForm">Введите искомое слово:</h1>
-        <div class="mainForm">
-            <form action="result">
-                <input class="searchInputMain" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-autocomplete="list" aria-label="Запрос" id="text" maxlength="400" name="text" autofocus="" placeholder="Например: арбуз" role="combobox" aria-controls="suggest-list-b95dusbyd7w">
+        <div id="main">
+            <h1 class="titleForm">Введите искомое слово:</h1>
+            <form action="result" method="POST">
+                {% csrf_token %}
+                <input name="word" required class="searchInputMain" id="id_word" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-autocomplete="list" aria-label="Запрос" id="text" maxlength="400" name="text" autofocus="" placeholder="Например: арбуз" role="combobox" aria-controls="suggest-list-b95dusbyd7w">
                 <button class="searchButton" type="submit">
                     Искать в словарях
                 </button>
             </form>
-            </div>
         </div>
-    </div>
     </center>
-
 </body>
 </html>

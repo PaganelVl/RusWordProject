@@ -6,6 +6,9 @@ from transliterate import translit
 
 
 class Parse:
+    def __init__(self, word):
+        self.word = word
+
     def wordManage(FirstLetter):
         """Trasliterating word and designation it first letter"""
         FirstLetter = f"{FirstLetter}"
@@ -14,7 +17,7 @@ class Parse:
             if i == "'":
                 word = word.replace(i, "")
 
-    def parse(word, url):
+    def parse(url):
         # Replacement "е" to "ё"
         for i in word:
             if i == "ё":
@@ -70,6 +73,7 @@ def index(request):
 
 def result(request):
     word = 'арбуз'
+    ParseDict = Parse(word)
     dictionaries = [
         ['Толковый словарь Даля', 'https://diclist.ru/slovar/dalya'],
         ['Толковый словарь Ожегова', 'https://diclist.ru/slovar/ozhegova'],
@@ -79,7 +83,7 @@ def result(request):
     ]
 
     for i in dictionaries:
-        i.append(Parse.parse(word, i[1]))
+        i.append(ParseDict.parse(i[1]))
 
     data = {'dict': dictionaries, 'word': word}
 

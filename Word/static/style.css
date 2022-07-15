@@ -28,7 +28,7 @@ header {
     font-style: italic;
     font-weight: 100;
 }
-.mainForm {
+form {
     width: 400px;
     height: auto;
 }
